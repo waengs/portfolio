@@ -1,11 +1,20 @@
+# waengs portfolio
 
-  # Portfolio showcase app
+Personal portfolio site built with React, Vite, and Tailwind CSS.
 
-  This is a code bundle for Portfolio showcase app. The original project is available at https://www.figma.com/design/fYEZKuUz0OiSNhyjL22Xag/Portfolio-showcase-app.
+## Setup
 
-  ## Running the code
+```bash
+npm install
+npm run dev
+```
 
-  Run `npm i` to install the dependencies.
+## Build
 
-  Run `npm run dev` to start the development server.
-  
+```bash
+npm run build
+```
+
+## Deploy
+
+Configured for Vercel. Set Firebase environment variables in the Vercel dashboard if using guestbook features.
