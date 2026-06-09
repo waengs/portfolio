@@ -1,0 +1,34 @@
+{
+  "approved": [
+    {
+      "id": "seed-mochi",
+      "name": "mochi ★",
+      "message": "your art is so cozy!!",
+      "status": "approved",
+      "createdAt": "2025-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "seed-pixel",
+      "name": "pixel",
+      "message": "obsessed with the genshin pieces",
+      "status": "approved",
+      "createdAt": "2025-01-02T00:00:00.000Z"
+    },
+    {
+      "id": "seed-bee",
+      "name": "bee",
+      "message": "came back for the guestbook hehe",
+      "status": "approved",
+      "createdAt": "2025-01-03T00:00:00.000Z"
+    }
+  ],
+  "pending": [
+    {
+      "id": "5cdec1c5-4399-4194-bebb-f2a0530e6ada",
+      "name": "tester",
+      "message": "hello from api",
+      "status": "pending",
+      "createdAt": "2026-06-08T13:15:23.617Z"
+    }
+  ]
+}

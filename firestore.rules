@@ -1,0 +1,46 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      // Replace with your Firebase Auth UID after you create your admin account.
+      return request.auth != null
+        && request.auth.uid == "yPglc6J4VRefrtlKtJXmY1XYVJh1";
+    }
+
+    match /guestbook_notes/{noteId} {
+      allow read: if resource.data.status == "approved";
+
+      allow create: if request.auth == null
+        && request.resource.data.status == "pending"
+        && request.resource.data.name is string
+        && request.resource.data.message is string
+        && request.resource.data.name.size() <= 40
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 280
+        && request.resource.data.createdAt is timestamp
+        && (!("website" in request.resource.data) || request.resource.data.website == "");
+
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /anime_recs/{recId} {
+      allow read: if resource.data.status == "approved";
+
+      allow create: if request.auth == null
+        && request.resource.data.status == "pending"
+        && request.resource.data.name is string
+        && request.resource.data.anime is string
+        && request.resource.data.message is string
+        && request.resource.data.name.size() <= 40
+        && request.resource.data.anime.size() > 0
+        && request.resource.data.anime.size() <= 80
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 280
+        && request.resource.data.createdAt is timestamp
+        && (!("website" in request.resource.data) || request.resource.data.website == "");
+
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,44 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+
+# Environment variables (keep .env.example as a template)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Vite / TypeScript cache
+*.tsbuildinfo
+.vite/
+
+# Test / coverage
+coverage/
+
+# Vercel
+.vercel/
+
+# Optional npm cache
+.npm
+
+# Cursor / local tooling
+.cursor/
