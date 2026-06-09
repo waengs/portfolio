@@ -1,20 +1,99 @@
-# waengs portfolio
+# 🌐 Waengs Hub
 
-Personal portfolio site built with React, Vite, and Tailwind CSS.
+> A personal media discovery hub exploring interests, creativity, and digital experiences.
 
-## Setup
+🔗 Live Demo: [Waengs Hub]()
 
-```bash
-npm install
-npm run dev
-```
+---
 
-## Build
+## ✨ About
 
-```bash
-npm run build
-```
+Waengs Hub is a personal creative platform built to collect and organize my interests, projects, and interactive experiences in one place.
 
-## Deploy
+The project explores how personal interests can become a meaningful digital space through custom visuals, interactive components, and thoughtful user experience design.
 
-Configured for Vercel. Set Firebase environment variables in the Vercel dashboard if using guestbook features.
+Rather than being a traditional portfolio, Waengs Hub acts as a creative archive — combining project showcases, media collections, and community-inspired features.
+
+---
+
+## 🎨 Features
+
+### 📚 Interest & Media Collections
+- Organize different interests and media categories
+- Browse curated collections
+- Create a personalized discovery experience
+
+### 💙 Interactive Experience
+- Custom illustrations and visual assets
+- Interactive UI elements
+- Small animations and micro-interactions
+
+### 🗂️ Project Archive
+- Showcase personal projects
+- Provide project descriptions and links
+- Document creative and technical experiments
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+- **React 18** — UI framework
+- **TypeScript** — typed React development
+- **Vite 6** — development and production build
+- **React Router 7** — client-side routing
+- **Tailwind CSS 4** — styling
+- **Motion** — animations
+- **Lucide React** — icons
+- **Embla Carousel** — image galleries
+
+### Backend / Data
+- **Firebase** — backend services
+- **Firestore** — data storage
+- **Firebase Authentication** — admin authentication
+- **localStorage** — client-side poll persistence
+
+### Assets
+- **Google Fonts**
+  - Caveat
+  - Nunito
+  - Patrick Hand
+- **Sharp** — image optimization scripts
+
+### Deployment
+- **Vercel** — hosting and deployment
+
+---
+
+## 🎯 Goals
+
+The goal of Waengs Hub was to create a space that feels personal while still being functional and easy to navigate.
+
+Through this project, I explored:
+- UI/UX design
+- Creating engaging user experiences
+- Visual storytelling
+- Organizing content through intuitive layouts
+
+---
+
+## 📸 Preview
+
+(Add screenshots here)
+
+---
+
+## 🌱 Future Improvements
+
+Possible future additions:
+- More interactive community features
+- Improved content organization
+- Additional personalization options
+
+---
+
+## 👤 Creator
+
+Created by **Waengs**
+
+A collection of things I build, design, and enjoy ✨
