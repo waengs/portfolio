@@ -2,7 +2,7 @@
 
 > A personal media discovery hub exploring interests, creativity, and digital experiences.
 
-🔗 Live Demo: [Waengs Hub]()
+🔗 Live Demo: [Waengs Hub](https://waengs.vercel.app/)
 
 ---
 
@@ -79,7 +79,8 @@ Through this project, I explored:
 
 ## 📸 Preview
 
-(Add screenshots here)
+<img width="2861" height="1338" alt="image" src="https://github.com/user-attachments/assets/5c0bcd6b-d428-41f0-b77c-caa32a99f3fb" />
+
 
 ---
 
