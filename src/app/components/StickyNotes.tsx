@@ -26,7 +26,7 @@ export default function StickyNotes({ compact = false }: StickyNotesProps) {
       <p className={`mb-1.5 font-['Caveat'] text-xl ${PINK_ACCENT}`}>leave a note!</p>
 
       {compact ? (
-        <div className="mb-2 space-y-1.5 text-[10px] leading-relaxed text-[#3d4f66]/80">
+        <div className="mb-2 space-y-1.5 text-[11px] leading-relaxed text-[#3d4f66]/80">
           <p>say hi! open for requests ⊂(・▽・)⊃ recs and rants are also accepted!
           </p>
           <p className="font-medium text-[#3d4f66]/90">
@@ -34,7 +34,7 @@ export default function StickyNotes({ compact = false }: StickyNotesProps) {
           </p>
         </div>
       ) : (
-        <p className="mb-3 text-[10px] leading-relaxed text-[#3d4f66]/75">
+        <p className="mb-3 text-[11px] leading-relaxed text-[#3d4f66]/75">
           say hi — i read every message (｡•̀ᴗ-)✧
         </p>
       )}
