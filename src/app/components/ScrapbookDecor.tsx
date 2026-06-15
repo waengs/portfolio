@@ -14,7 +14,7 @@ export const POLL_INNER_CARD =
 export const POLL_INNER_TITLE = "mb-2 font-['Caveat'] text-lg text-[#9d4b6a] md:text-xl";
 export const POLL_INNER_BODY = "font-['Nunito'] text-sm leading-relaxed text-[#3d4f66]";
 
-/** Pin-of-shame pink — loreforge, shame board, etc. */
+/** Pin-of-shame pink — CreateInk, shame board, etc. */
 export const PINK_PANEL_SHADOW = "shadow-[0_4px_15px_rgba(219,39,119,0.1)]";
 export const PINK_INNER_CARD =
   "rounded-xl border border-[#f9a8d4]/40 bg-white/80 px-4 py-3 shadow-sm md:px-5 md:py-4";

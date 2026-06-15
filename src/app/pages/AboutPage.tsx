@@ -12,11 +12,8 @@ import {
   ABOUT_PAGE_PHOTO,
   ABOUT_SOCIALS,
 } from "../data/aboutPageData";
-import { SOCIAL_CHIP_CLASS, WAENGS_GITHUB } from "../data/socialData";
+import { SOCIAL_CHIP_CLASS } from "../data/socialData";
 import { springSnappy } from "../motion/presets";
-
-const linkClass =
-  "font-medium text-[#5a8fc9] underline decoration-[#8fb8ed]/50 underline-offset-2 transition hover:text-[#4a7fb8] hover:decoration-[#8fb8ed]";
 
 export default function AboutPage() {
   return (
@@ -53,17 +50,7 @@ export default function AboutPage() {
               Yo, it&apos;s waengs. I&apos;m a digital artist who&apos;s also majoring in computer
               science (don&apos;t ask why it just happened that way). Though, I&apos;m happy it
               turned out this way, I learned all the nits and bits so now I can make my ideas into
-              realities. Hehe want my own fanfic, too lazy to write it BAM! Made one that can do it
-              for me. (not lying btw, you can check it out here{" "}
-              <a
-                href={WAENGS_GITHUB.loreforgeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={linkClass}
-              >
-                github.com/waengs/loreforge
-              </a>
-              ) Feel free to browse around too i got lots of fun fandom projects!
+              realities. Feel free to browse around too i got lots of fun fandom projects!
             </p>
             <p>
               I live and breathe fandom life, anime, mcyt, genshin, hsr, I&apos;ve been in all

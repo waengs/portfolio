@@ -73,14 +73,14 @@ export const PERSONAL_SECTIONS = {
     appUrl: "https://waengs.github.io/birthday-app/",
     appLinkLabel: "open the birthday app →",
   },
-  loreforge: {
-    title: "loreforge",
+  createInk: {
+    title: "CreateInk",
     description:
-      "Loreforge is an AI-assisted story creation app designed to help writers build, organize, and manage fictional worlds. It provides tools for tracking characters, world rules, relationships, and story elements while using AI to assist with the creative process.",
+      "CreateInk is an AI-assisted story creation app designed to help writers build, organize, and manage fictional worlds. It provides tools for tracking characters, world rules, relationships, and story elements while using AI to assist with the creative process.",
     problem:
       "Creating fictional worlds often involves managing large amounts of information such as character backgrounds, relationships, locations, and rules. As stories grow bigger, writers can struggle to keep their ideas consistent and organized.",
     solution:
-      "I created Loreforge as a digital workspace where users can store and develop their fictional universes. The app combines structured world-building tools with AI assistance, allowing users to generate ideas while maintaining control over their own story details.",
+      "I created CreateInk as a digital workspace where users can store and develop their fictional universes. The app combines structured world-building tools with AI assistance, allowing users to generate ideas while maintaining control over their own story details.",
     keyFeatures: [
       "Character management system",
       "World rules and lore tracking",
@@ -89,7 +89,7 @@ export const PERSONAL_SECTIONS = {
       "Mobile application experience built with Expo",
     ],
     myRole:
-      "I independently designed and developed Loreforge, including the UI/UX, application structure, feature implementation, and AI integration.",
+      "I independently designed and developed CreateInk, including the UI/UX, application structure, feature implementation, and AI integration.",
     technology: [
       "Expo SDK 56 + React Native",
       "Expo Router (file-based navigation)",
@@ -97,7 +97,7 @@ export const PERSONAL_SECTIONS = {
       "React Native Paper + custom literary dark theme (Cinzel / Lora)",
       "Ollama HTTP API for local AI generation",
     ],
-    repoUrl: "https://github.com/waengs/loreforge",
+    repoUrl: "https://github.com/waengs/createink",
     linkLabel: "view on github →",
   },
 } as const;

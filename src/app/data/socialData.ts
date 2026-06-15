@@ -40,7 +40,7 @@ export const DYNERETH_INSTAGRAM = {
 export const WAENGS_GITHUB = {
   username: "waengs",
   profileUrl: "https://github.com/waengs",
-  loreforgeUrl: "https://github.com/waengs/loreforge",
+  createInkUrl: "https://github.com/waengs/createink",
 } as const;
 
 /** Full list for about page + anywhere else — add new accounts here */

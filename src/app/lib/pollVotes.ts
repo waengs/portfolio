@@ -1,9 +1,21 @@
 import { doc, getDoc, runTransaction, serverTimestamp } from "firebase/firestore";
+import { POLL_SEED_COUNTS } from "../data/pollSeedData";
 import { getFirebaseDb, isFirebaseConfigured } from "./firebase";
 
 const VOTES_PREFIX = "poll-votes:";
 const USER_VOTE_PREFIX = "poll-user-vote:";
 const POLLS_COLLECTION = "polls";
+
+function mergePollCounts(pollId: string, liveCounts: Record<string, number>): Record<string, number> {
+  const seeds = POLL_SEED_COUNTS[pollId] ?? {};
+  const merged = { ...seeds };
+
+  for (const [optionId, count] of Object.entries(liveCounts)) {
+    merged[optionId] = (merged[optionId] ?? 0) + count;
+  }
+
+  return merged;
+}
 
 function getLocalPollVotes(pollId: string): Record<string, number> {
   if (typeof window === "undefined") return {};
@@ -35,24 +47,25 @@ function saveLocalDeviceVote(pollId: string, optionId: string) {
 
 export async function fetchPollVotes(pollId: string): Promise<Record<string, number>> {
   if (!isFirebaseConfigured()) {
-    return getLocalPollVotes(pollId);
+    return mergePollCounts(pollId, getLocalPollVotes(pollId));
   }
 
   const db = getFirebaseDb();
-  if (!db) return getLocalPollVotes(pollId);
+  if (!db) return mergePollCounts(pollId, getLocalPollVotes(pollId));
 
   try {
     const snap = await getDoc(doc(db, POLLS_COLLECTION, pollId));
-    if (!snap.exists()) return {};
+    if (!snap.exists()) return mergePollCounts(pollId, {});
 
     const counts = snap.data().counts;
-    if (typeof counts !== "object" || counts === null) return {};
+    if (typeof counts !== "object" || counts === null) return mergePollCounts(pollId, {});
 
-    return Object.fromEntries(
+    const liveCounts = Object.fromEntries(
       Object.entries(counts).filter((entry): entry is [string, number] => typeof entry[1] === "number"),
     );
+    return mergePollCounts(pollId, liveCounts);
   } catch {
-    return getLocalPollVotes(pollId);
+    return mergePollCounts(pollId, getLocalPollVotes(pollId));
   }
 }
 
@@ -69,7 +82,7 @@ export async function votePoll(
     if (db) {
       try {
         const pollRef = doc(db, POLLS_COLLECTION, pollId);
-        const votes = await runTransaction(db, async (transaction) => {
+        const liveVotes = await runTransaction(db, async (transaction) => {
           const snap = await transaction.get(pollRef);
           const existing =
             snap.exists() && typeof snap.data().counts === "object" && snap.data().counts !== null
@@ -82,18 +95,18 @@ export async function votePoll(
         });
 
         saveLocalDeviceVote(pollId, optionId);
-        return { votes, ok: true };
+        return { votes: mergePollCounts(pollId, liveVotes), ok: true };
       } catch {
         // Fall back to local storage when Firestore is unavailable.
       }
     }
   }
 
-  const votes = getLocalPollVotes(pollId);
-  votes[optionId] = (votes[optionId] ?? 0) + 1;
-  saveLocalPollVotes(pollId, votes);
+  const liveVotes = getLocalPollVotes(pollId);
+  liveVotes[optionId] = (liveVotes[optionId] ?? 0) + 1;
+  saveLocalPollVotes(pollId, liveVotes);
   saveLocalDeviceVote(pollId, optionId);
-  return { votes, ok: true };
+  return { votes: mergePollCounts(pollId, liveVotes), ok: true };
 }
 
 export function totalPollVotes(votes: Record<string, number>): number {

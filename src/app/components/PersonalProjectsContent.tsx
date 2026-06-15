@@ -467,7 +467,7 @@ export default function PersonalProjectsContent() {
     : null;
 
   const birthdayApp = PERSONAL_SECTIONS.birthdayApp;
-  const loreforge = PERSONAL_SECTIONS.loreforge;
+  const createInk = PERSONAL_SECTIONS.createInk;
   const spire = PERSONAL_SECTIONS.spire;
   const bookmatch = PERSONAL_SECTIONS.bookmatch;
 
@@ -475,20 +475,20 @@ export default function PersonalProjectsContent() {
     <>
       <SectionBlock
         icon={Sparkles}
-        title={loreforge.title}
-        description={loreforge.description}
+        title={createInk.title}
+        description={createInk.description}
         panel="pink"
         accent="pink"
       >
-        <ProjectDetailSections detail={loreforge} variant="pink" />
+        <ProjectDetailSections detail={createInk} variant="pink" />
 
         <a
-          href={loreforge.repoUrl}
+          href={createInk.repoUrl}
           target="_blank"
           rel="noreferrer"
           className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-[#8fb8ed] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-[#7aa8e0]"
         >
-          {loreforge.linkLabel}
+          {createInk.linkLabel}
           <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </SectionBlock>
