@@ -37,31 +37,22 @@ Rather than being a traditional portfolio, Waengs Hub acts as a creative archive
 
 ## 🛠️ Technology Stack
 
-### Frontend
-- **React 18** — UI framework
-- **TypeScript** — typed React development
-- **Vite 6** — development and production build
-- **React Router 7** — client-side routing
-- **Tailwind CSS 4** — styling
-- **Motion** — animations
-- **Lucide React** — icons
-- **Embla Carousel** — image galleries
-
-### Backend / Data
-- **Firebase** — backend services
-- **Firestore** — data storage
-- **Firebase Authentication** — admin authentication
-- **localStorage** — client-side poll persistence
-
-### Assets
-- **Google Fonts**
-  - Caveat
-  - Nunito
-  - Patrick Hand
-- **Sharp** — image optimization scripts
-
-### Deployment
-- **Vercel** — hosting and deployment
+| **Category** | **Technology** | **Purpose** |
+|---|---|---|
+| **Frontend Framework** | React 18 | Building reusable user interface components |
+| **Programming Language** | TypeScript | Type-safe development and improved maintainability |
+| **Build Tool** | Vite 6 | Fast development server and optimized production builds |
+| **Routing** | React Router 7 | Client-side navigation and page routing |
+| **Styling** | Tailwind CSS 4 | Utility-based styling and responsive UI design |
+| **Animation** | Motion | Creating interactive animations and transitions |
+| **Icons** | Lucide React | Providing consistent interface icons |
+| **UI Components** | Embla Carousel | Building interactive image galleries and carousels |
+| **Backend Services** | Firebase | Providing backend infrastructure and application services |
+| **Database** | Firestore | Storing application data and user-generated content |
+| **Authentication** | Firebase Authentication | Managing secure admin login and user authentication |
+| **Fonts** | Google Fonts (Caveat, Nunito, Patrick Hand) | Creating the application's visual identity and typography |
+| **Image Optimization** | Sharp | Optimizing and processing image assets |
+| **Deployment** | Vercel | Hosting, deployment, and production delivery |
 
 ---
 
