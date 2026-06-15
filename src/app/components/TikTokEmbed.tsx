@@ -56,7 +56,7 @@ export default function TikTokEmbed({
         <iframe
           src={embedSrc}
           title={title}
-          className="block h-[580px] w-full border-0"
+          className="block h-[min(580px,70vh)] w-full border-0 sm:h-[580px]"
           scrolling="no"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
@@ -67,7 +67,7 @@ export default function TikTokEmbed({
           href={watchUrl}
           target="_blank"
           rel="noreferrer"
-          className="flex h-[580px] flex-col items-center justify-center gap-3 bg-[#111] p-6 text-center text-white/90 transition hover:bg-[#1a1a1a]"
+          className="flex h-[min(580px,70vh)] flex-col items-center justify-center gap-3 bg-[#111] p-6 text-center text-white/90 transition hover:bg-[#1a1a1a] sm:h-[580px]"
         >
           <span className="text-4xl">▶</span>
           <p className="font-['Caveat'] text-2xl text-[#8fb8ed]">{title}</p>

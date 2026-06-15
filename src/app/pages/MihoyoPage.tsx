@@ -246,7 +246,7 @@ export default function MihoyoPage() {
             {MIHOYO_INTRO_TITLE}
           </h2>
 
-          <div className="float-right ml-4 mb-2 flex gap-2.5">
+          <div className="mb-4 flex flex-wrap justify-center gap-3 sm:justify-start">
             {MIHOYO_BADGES.map((badge) => (
               <CertifiedBadge key={badge.game} {...badge} />
             ))}
@@ -258,7 +258,7 @@ export default function MihoyoPage() {
             href={MIHOYO_TIKTOK.profileUrl}
             target="_blank"
             rel="noreferrer"
-            className={`mt-4 clear-both ${SOCIAL_CHIP_CLASS}`}
+            className={`mt-4 ${SOCIAL_CHIP_CLASS}`}
           >
             @{MIHOYO_TIKTOK.username} on tiktok
             <ExternalLink className="h-3.5 w-3.5" />
@@ -329,10 +329,10 @@ export default function MihoyoPage() {
                   <span className="min-w-0 flex-1 font-['Nunito'] text-sm font-semibold text-[#3d4f66] md:text-base">
                     {option.name}
                   </span>
-                  <span className="shrink-0 rounded-full bg-[#ede8ff] px-2 py-0.5 font-['Nunito'] text-xs font-bold text-[#8b7ab8]">
+                  <span className="shrink-0 rounded-full bg-[#ede8ff] px-2 py-0.5 font-['Nunito'] text-[11px] font-bold text-[#8b7ab8] sm:text-xs">
                     {percent}%
                   </span>
-                  <span className="shrink-0 text-base opacity-90" aria-hidden>
+                  <span className="hidden shrink-0 text-base opacity-90 sm:inline" aria-hidden>
                     {emoji}
                   </span>
                 </motion.button>
@@ -521,8 +521,8 @@ export default function MihoyoPage() {
         </div>
       </ScrollReveal>
 
-      <ScrollReveal direction="up" eager className="grid gap-4 px-5 pb-6 md:grid-cols-2 md:gap-8">
-        <div className="rounded-[22px] bg-[#ede8ff] p-4 shadow-[0_4px_15px_rgba(0,0,0,0.06)]">
+      <ScrollReveal direction="up" eager className="flex flex-col gap-4 px-5 pb-6 md:grid md:grid-cols-2 md:gap-8">
+        <div className="min-w-0 rounded-[22px] bg-[#ede8ff] p-4 shadow-[0_4px_15px_rgba(0,0,0,0.06)]">
           <h2 className="mb-3 font-['Caveat'] text-2xl text-[#3d4f66]">tiktok spotlight</h2>
           <TikTokEmbed
             videoUrl={tiktokVideo.videoUrl}
@@ -533,16 +533,21 @@ export default function MihoyoPage() {
           />
         </div>
 
-        <div className="relative rotate-[0.5deg] rounded-[22px] bg-[#fce7f3] p-4 shadow-[0_4px_15px_rgba(219,39,119,0.1)]">
-          <Pin className="absolute -top-2 right-6 h-6 w-6 rotate-12 text-[#db2777]" aria-hidden />
-          <h2 className="mb-3 font-['Caveat'] text-2xl text-[#9d4b6a]">pin of shame 📌</h2>
-          <ul className="space-y-2">
+        <div className="relative min-w-0 overflow-hidden rounded-[22px] bg-[#fce7f3] p-4 shadow-[0_4px_15px_rgba(219,39,119,0.1)] sm:rotate-[0.5deg]">
+          <Pin className="absolute -top-2 right-4 h-6 w-6 rotate-12 text-[#db2777] sm:right-6" aria-hidden />
+          <h2 className="mb-3 pr-8 font-['Caveat'] text-2xl text-[#9d4b6a]">pin of shame 📌</h2>
+          <ul className="max-h-[min(28rem,60vh)] space-y-2.5 overflow-y-auto overscroll-contain pr-1">
             {MIHOYO_PIN_OF_SHAME.map((comment) => (
               <li
                 key={`${comment.user}-${comment.text}`}
-                className="rounded-xl border border-[#f9a8d4]/40 bg-white/80 px-3 py-2 text-xs leading-relaxed text-[#3d4f66] shadow-sm"
+                className="rounded-xl border border-[#f9a8d4]/40 bg-white/80 px-3 py-2.5 shadow-sm sm:px-4 sm:py-3"
               >
-                <span className="font-semibold text-[#db2777]">@{comment.user}</span> {comment.text}
+                <p className="break-words text-xs font-semibold leading-snug text-[#db2777] sm:text-sm">
+                  @{comment.user}
+                </p>
+                <p className="mt-1 break-words text-sm leading-relaxed text-[#3d4f66]">
+                  {comment.text}
+                </p>
               </li>
             ))}
           </ul>
