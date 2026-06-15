@@ -27,7 +27,13 @@ import {
 import { SOCIAL_CHIP_CLASS } from "../data/socialData";
 import { springSnappy } from "../motion/presets";
 import { extractTikTokEmbedUrl } from "../utils/tiktokEmbed";
-import { getDevicePollVote, getPollVotes, pollVotePercent, totalPollVotes, votePoll } from "../lib/pollVotes";
+import {
+  fetchPollVotes,
+  getDevicePollVote,
+  pollVotePercent,
+  totalPollVotes,
+  votePoll,
+} from "../lib/pollVotes";
 
 const BLUELOCK_POLL_ID = "bluelock-duos";
 
@@ -86,8 +92,8 @@ export default function BluelockPage() {
   const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   useEffect(() => {
-    setPollVotes(getPollVotes(BLUELOCK_POLL_ID));
     setUserVote(getDevicePollVote(BLUELOCK_POLL_ID));
+    void fetchPollVotes(BLUELOCK_POLL_ID).then(setPollVotes);
   }, []);
 
   const videoEmbeds = useMemo(
@@ -116,9 +122,10 @@ export default function BluelockPage() {
   };
 
   const handlePollVote = (optionId: string) => {
-    const result = votePoll(BLUELOCK_POLL_ID, optionId);
-    setPollVotes(result.votes);
-    if (result.ok) setUserVote(optionId);
+    void votePoll(BLUELOCK_POLL_ID, optionId).then((result) => {
+      setPollVotes(result.votes);
+      if (result.ok) setUserVote(optionId);
+    });
   };
 
   return (

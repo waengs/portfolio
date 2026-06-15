@@ -116,7 +116,7 @@ export default function McytPage() {
             <Sparkles className="mt-1 h-5 w-5 shrink-0 text-[#db2777]" />
             <div>
               <h2 className="font-['Caveat'] text-3xl leading-tight text-[#3d4f66] md:text-4xl">
-                fanfic recs
+                community writing recommendations
               </h2>
             </div>
           </div>
@@ -210,7 +210,7 @@ export default function McytPage() {
                   exit={{ opacity: 0 }}
                   className={`${FIC_RESPONSE_BOX} flex items-center justify-center border border-dashed border-[#db2777]/25 bg-white/40 text-center font-['Caveat'] text-lg text-[#9d4b6a]/80`}
                 >
-                  pick a fic to read my ramble ♡
+                  pick a recommendation to read my ramble ♡
                 </motion.p>
               )}
             </AnimatePresence>

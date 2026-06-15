@@ -40,7 +40,13 @@ import {
 } from "../data/mihoyoPageData";
 import { SOCIAL_CHIP_CLASS } from "../data/socialData";
 import { springSnappy } from "../motion/presets";
-import { getDevicePollVote, getPollVotes, pollVotePercent, totalPollVotes, votePoll } from "../lib/pollVotes";
+import {
+  fetchPollVotes,
+  getDevicePollVote,
+  pollVotePercent,
+  totalPollVotes,
+  votePoll,
+} from "../lib/pollVotes";
 
 const MIHOYO_POLL_ID = "mihoyo-fav-char";
 
@@ -168,8 +174,8 @@ export default function MihoyoPage() {
   const [showFront, setShowFront] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
-    setPollVotes(getPollVotes(MIHOYO_POLL_ID));
     setUserVote(getDevicePollVote(MIHOYO_POLL_ID));
+    void fetchPollVotes(MIHOYO_POLL_ID).then(setPollVotes);
   }, []);
 
   const storeItems = MIHOYO_STORE_CATALOG.filter((item) => item.category === storeTab);
@@ -198,9 +204,10 @@ export default function MihoyoPage() {
   };
 
   const handlePollVote = (optionId: string) => {
-    const result = votePoll(MIHOYO_POLL_ID, optionId);
-    setPollVotes(result.votes);
-    if (result.ok) setUserVote(optionId);
+    void votePoll(MIHOYO_POLL_ID, optionId).then((result) => {
+      setPollVotes(result.votes);
+      if (result.ok) setUserVote(optionId);
+    });
   };
 
   const tiktokVideo = useMemo(

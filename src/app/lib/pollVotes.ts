@@ -1,7 +1,11 @@
+import { doc, getDoc, runTransaction, serverTimestamp } from "firebase/firestore";
+import { getFirebaseDb, isFirebaseConfigured } from "./firebase";
+
 const VOTES_PREFIX = "poll-votes:";
 const USER_VOTE_PREFIX = "poll-user-vote:";
+const POLLS_COLLECTION = "polls";
 
-export function getPollVotes(pollId: string): Record<string, number> {
+function getLocalPollVotes(pollId: string): Record<string, number> {
   if (typeof window === "undefined") return {};
 
   try {
@@ -14,23 +18,81 @@ export function getPollVotes(pollId: string): Record<string, number> {
   }
 }
 
+function saveLocalPollVotes(pollId: string, votes: Record<string, number>) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(`${VOTES_PREFIX}${pollId}`, JSON.stringify(votes));
+}
+
 export function getDevicePollVote(pollId: string): string | null {
   if (typeof window === "undefined") return null;
   return localStorage.getItem(`${USER_VOTE_PREFIX}${pollId}`);
 }
 
-export function votePoll(
-  pollId: string,
-  optionId: string,
-): { votes: Record<string, number>; ok: boolean } {
-  if (getDevicePollVote(pollId)) {
-    return { votes: getPollVotes(pollId), ok: false };
+function saveLocalDeviceVote(pollId: string, optionId: string) {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(`${USER_VOTE_PREFIX}${pollId}`, optionId);
+}
+
+export async function fetchPollVotes(pollId: string): Promise<Record<string, number>> {
+  if (!isFirebaseConfigured()) {
+    return getLocalPollVotes(pollId);
   }
 
-  const votes = getPollVotes(pollId);
+  const db = getFirebaseDb();
+  if (!db) return getLocalPollVotes(pollId);
+
+  try {
+    const snap = await getDoc(doc(db, POLLS_COLLECTION, pollId));
+    if (!snap.exists()) return {};
+
+    const counts = snap.data().counts;
+    if (typeof counts !== "object" || counts === null) return {};
+
+    return Object.fromEntries(
+      Object.entries(counts).filter((entry): entry is [string, number] => typeof entry[1] === "number"),
+    );
+  } catch {
+    return getLocalPollVotes(pollId);
+  }
+}
+
+export async function votePoll(
+  pollId: string,
+  optionId: string,
+): Promise<{ votes: Record<string, number>; ok: boolean }> {
+  if (getDevicePollVote(pollId)) {
+    return { votes: await fetchPollVotes(pollId), ok: false };
+  }
+
+  if (isFirebaseConfigured()) {
+    const db = getFirebaseDb();
+    if (db) {
+      try {
+        const pollRef = doc(db, POLLS_COLLECTION, pollId);
+        const votes = await runTransaction(db, async (transaction) => {
+          const snap = await transaction.get(pollRef);
+          const existing =
+            snap.exists() && typeof snap.data().counts === "object" && snap.data().counts !== null
+              ? (snap.data().counts as Record<string, number>)
+              : {};
+          const counts = { ...existing };
+          counts[optionId] = (counts[optionId] ?? 0) + 1;
+          transaction.set(pollRef, { counts, updatedAt: serverTimestamp() }, { merge: true });
+          return counts;
+        });
+
+        saveLocalDeviceVote(pollId, optionId);
+        return { votes, ok: true };
+      } catch {
+        // Fall back to local storage when Firestore is unavailable.
+      }
+    }
+  }
+
+  const votes = getLocalPollVotes(pollId);
   votes[optionId] = (votes[optionId] ?? 0) + 1;
-  localStorage.setItem(`${VOTES_PREFIX}${pollId}`, JSON.stringify(votes));
-  localStorage.setItem(`${USER_VOTE_PREFIX}${pollId}`, optionId);
+  saveLocalPollVotes(pollId, votes);
+  saveLocalDeviceVote(pollId, optionId);
   return { votes, ok: true };
 }
 
